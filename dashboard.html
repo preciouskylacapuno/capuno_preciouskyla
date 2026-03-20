@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEU Library Admin Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+</head>
+<body class="dashboard-body app-layout">
+    
+    <nav class="sidebar">
+        <div class="sidebar-header">
+            <span class="neu-logo-text">NEU</span>
+        </div>
+        <ul class="nav-links">
+            <li class="active"><span class="icon"></span>Dashboard</li>
+        </ul>
+        <div class="sidebar-footer">
+            <button class="signout-btn" id="logoutBtn">
+                <span class="icon"></span>Sign Out
+            </button>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        
+        <header class="admin-header">
+            <div class="header-left">
+                <h2>NEU Library Visitor Log</h2>
+                <div class="breadcrumb">ADMIN > DASHBOARD > VISITOR STATISTICS</div>
+            </div>
+            <div class="header-right">
+                <div class="notifications">🔔</div>
+                <div class="user-profile">
+                    <img src="https://via.placeholder.com/40" alt="Admin" class="avatar">
+                    <div class="user-details">
+                        <span id="adminEmail">jcesperanza@neu.edu.ph</span>
+                        <div class="role-switcher">
+                            <label>ROLE: ADMIN</label>
+                            <span class="toggle-link" id="switchToUser">(Switch to User)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <section class="global-filters">
+            <div class="filter-group">
+                <label>DATE RANGE</label>
+                <input type="text" id="dateRangePicker" placeholder="THIS WEEK" class="flatpickr-input">
+            </div>
+            <div class="filter-group">
+                <label>FILTER BY COLLEGE</label>
+                <div class="chip-container" id="collegeChips">
+                    </div>
+            </div>
+            <div class="filter-group">
+                <label>FILTER BY REASON</label>
+                <select id="reasonFilter">
+                    <option value="">All Reasons</option>
+                    <option value="Study">Study</option>
+                    <option value="Research">Research</option>
+                    <option value="Clearance">Clearance</option>
+                    <option value="Borrowing">Borrowing</option>
+                </select>
+            </div>
+        </section>
+
+        <section class="stats-grid">
+            <div class="stats-card">
+                <h3>TOTAL VISITORS (THIS WEEK)</h3>
+                <div class="stat-main">
+                    <h2 id="totalCount">8,912</h2>
+                </div>
+            </div>
+            <div class="stats-card">
+                <h3>PEAK VISIT TIME</h3>
+                <h2 id="peakTime">1:00 PM - 3:00 PM</h2>
+            </div>
+            <div class="stats-card">
+                <h3>TOP COLLEGE</h3>
+                <div class="college-logo-container">
+                    <img src="neu_logo.png" alt="" class="college-logo">
+                    <h2 id="topCollege">COLLEGE OF CET</h2>
+                </div>
+            </div>
+            <div class="stats-card">
+                <h3>EMPLOYEE VISITS</h3>
+                <div class="stat-sub">
+                    <h2 id="employeeCount">540</h2>
+                    <span class="label-chip">Teacher/Staff</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="charts-section">
+            <div class="chart-card large">
+                <h3>VISITOR TRAFFIC TREND (LAST 7 DAYS)</h3>
+                <div class="chart-container">
+                    <canvas id="trafficChart"></canvas>
+                </div>
+            </div>
+            <div class="chart-card">
+                <h3>DISTRIBUTION OF VISIT REASONS</h3>
+                <div class="chart-container">
+                    <canvas id="reasonDonutChart"></canvas>
+                </div>
+            </div>
+            <div class="chart-card">
+                <h3>VISITORS BY COLLEGE (TOP 5)</h3>
+                <div class="chart-container">
+                    <canvas id="collegeBarChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section class="live-feed-section">
+            <h3>LIVE VISITOR FEED (REAL-TIME)</h3>
+            <div class="table-container">
+                <table id="liveVisitorTable">
+                    <thead>
+                        <tr>
+                            <th>TIMESTAMP</th>
+                            <th>STUDENT/STAFF ID</th>
+                            <th>NAME</th>
+                            <th>COLLEGE</th>
+                            <th>REASON</th>
+                        </tr>
+                    </thead>
+                    <tbody id="liveTableBody">
+                        </tbody>
+                </table>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="script.js"></script>
+    <script>
+        // Init Flatpickr for advanced calendar
+        flatpickr("#dateRangePicker", { mode: "range", defaultDate: ["2022-06-05", "2022-06-11"] });
+    </script>
+</body>
+</html>

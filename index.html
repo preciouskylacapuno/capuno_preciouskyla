@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEU Library Login</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+    <div class="main-wrapper">
+        <div class="login-card">
+            <h1 class="title">NEU Library</h1>
+
+            <button id="googleLogin" class="log-now-btn">Login with Google</button>
+
+            <div class="toggle-container">
+                <button id="visitorBtn" class="toggle-btn active">Visitor</button>
+                <button id="adminBtn" class="toggle-btn">Admin</button>
+            </div>
+
+            <div class="form-group">
+                <input type="text" id="idNum" placeholder="ID Number" class="visitor-field">
+                
+                <input type="email" id="email" placeholder="Institutional email" class="admin-field hidden">
+                
+                <input type="text" id="fullName" placeholder="Full Name">
+
+                <select id="reason" class="visitor-field">
+                    <option value="">Select Reason</option>
+                    <option value="Study">Study</option>
+                    <option value="Research">Research</option>
+                    <option value="Borrow Book">Borrow Book</option>
+                    <option value="Other">Other</option>
+                </select>
+
+                <select id="college" class="visitor-field">
+                    <option value="">Select College</option>
+                    <option value="CICS">College of Informatics and Computing Studies</option>
+                    <option value="CEA">College of Engineering and Architecture</option>
+                    <option value="CBA">College of Business Administration</option>
+                    <option value="COA">College of Accountancy</option>
+                    <option value="COL">College of Law</option>
+                    <option value="COC">College of Communication</option>   
+                    <option value="CAS">College of Arts and Sciences</option>
+                    <option value="CED">College of Education</option>
+                    <option value="CCJ">College of Criminology</option>
+                    <option value="COM">College of Music</option>
+                    <option value="COA-AGRI">College of Agriculture</option>   
+                    <option value="CMED">College of Medicine</option>
+                    <option value="CON">College of Nursing</option>
+                    <option value="CMT">College of Medical Technology</option>
+                    <option value="CPT">College of Physical Therapy</option>
+                    <option value="CRT">College of Respiratory Therapy</option>
+                    <option value="CMID">College of Midwifery</option>   
+                    <option value="SIR">School of International Relations</option>
+                    <option value="SGS">School of Graduate Studies</option>
+                </select>
+
+                <select id="userType" class="visitor-field">
+                    <option value="">Select Type</option>
+                    <option value="Student">Student</option>
+                    <option value="Teacher">Teacher</option>
+                    <option value="Staff">Staff</option>
+                </select>
+            </div>
+
+            <button id="logBtn" class="log-now-btn">Log Now</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
